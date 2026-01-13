@@ -18,7 +18,7 @@ export function SideMenu({ sidemenuIcon1, sidemenuName1 }) {
   const location = useLocation();
   const isOverview = location.pathname === "/Landing";
 
-  const user = JSON.parse(localStorage.getItem("user") || "{}");
+  const user = JSON.parse(localStorage.getItem("user") || "null");
 
   function AppSidebar() {
     const { open } = useSidebar();
@@ -40,31 +40,30 @@ export function SideMenu({ sidemenuIcon1, sidemenuName1 }) {
         </SidebarHeader>
 
         {/* User Profile */}
-        <div className="flex justify-between items-center">
-          <div className="flex items-center gap-1 px-3">
-            <img
-              src="images/Avatar.jpg"
-              alt="User Avatar"
-              className={`rounded-full transition-all duration-300 ${
-                open ? "h-13 w-13 mx-2" : "h-6 w-6 mx-0.9"
-              }`}
-            />
-            {open && (
-              <div className="flex flex-col">
-                <span className="text-[#FDFDFD] font-semibold text-base leading-6">
-                  {user?.name}
-                </span>
-                <p className="text-[#F5F5F5] font-normal text-base leading-6">
-                  {user?.role}
-                </p>
-              </div>
-            )}
-          </div>
+
+        <div className="flex items-center gap-4">
+          <img
+            src="images/Avatar.jpg"
+            alt="User Avatar"
+            className={`rounded-full transition-all duration-300 ${
+              open ? "h-13 w-13" : "h-6 w-6 "
+            }`}
+          />
+          {open && (
+            <div className="flex flex-col">
+              <span className="text-[#FDFDFD] font-semibold text-base leading-6">
+                {user?.name}
+              </span>
+              <p className="text-[#F5F5F5] font-normal text-base leading-6">
+                {user?.role}
+              </p>
+            </div>
+          )}
         </div>
 
         <SidebarContent>
           <SidebarGroup>
-            <hr className="border-t border-white my-3" />
+            <hr className="border-t border-white my-5" />
             <SidebarGroupLabel className="text-white font-medium text-base leading-5">
               Main Menu
             </SidebarGroupLabel>
@@ -74,7 +73,7 @@ export function SideMenu({ sidemenuIcon1, sidemenuName1 }) {
                 <SidebarMenuItem>
                   <SidebarMenuButton
                     asChild
-                    className={`text-white ${
+                    className={`text-white  ${
                       isOverview
                         ? "bg-[#ffffff6b] hover:bg-[#ffffff93]"
                         : "hover:bg-[#ffffff26]"

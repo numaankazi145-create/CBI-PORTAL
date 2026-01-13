@@ -1,4 +1,4 @@
-import { CustomHeading } from "@/components/Custom/CustomHeading";
+import { CustomHeading } from "@/pages/components/CustomHeading";
 import React from "react";
 
 export function Landing() {

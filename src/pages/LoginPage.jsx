@@ -1,4 +1,4 @@
-// import { axios } from "@/config/axios";
+import { axios } from "@/config/axios";
 import { Eye, EyeOff, Loader } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -9,11 +9,11 @@ export function LoginPage() {
   const [pending, setPending] = useState(false);
   const navigate = useNavigate();
 
-  //   const loginAPI = async (data) => {
-  //     const URL = `/user/login`;
-  //     const res = await axios.post(URL, data);
-  //     return res.data;
-  //   };
+  const LoginAPI = async (data) => {
+    const URL = `/user/login`;
+    const res = await axios.post(URL, data);
+    return res.data;
+  };
 
   const {
     register,
@@ -21,33 +21,24 @@ export function LoginPage() {
     formState: { errors },
   } = useForm();
 
-  //   const onSubmit = async (formData) => {
-  //     try {
-  //       const res = await loginAPI({
-  //         email: formData.email,
-  //         password: formData.password,
-  //       });
-
-  //       console.log("LOGIN PAGE RESPONSE:", res);
-  //       navigate(0);
-
-  //       if (res?.accessToken) {
-  //         localStorage.setItem("token", res.accessToken);
-  //         localStorage.setItem("user", JSON.stringify(res.user));
-  //       }
-  //     } catch (error) {
-  //       console.log("Error:", error);
-  //       alert("Invalid email or password");
-  //     }
-  //   };
-
-  const onSubmit = (data) => {
-    console.log("Login", data);
+  const onSubmit = async (formData) => {
     setPending(true);
-    setTimeout(() => {
-      localStorage.setItem("token", JSON.stringify(data));
+    try {
+      const res = await LoginAPI({
+        email: formData.email,
+        password: formData.password,
+      });
+      console.log("LOGIN PAGE RESPONSE:", res);
+      localStorage.setItem("token", JSON.stringify(res?.data?.accessToken));
+      localStorage.setItem("user", JSON.stringify(res?.data?.user));
+      setPending(false);
       navigate(0);
-    }, 6000);
+    } catch (error) {
+      console.log("Error:", error);
+      alert("Invalid email or password");
+    } finally {
+      setPending(false);
+    }
   };
 
   return (

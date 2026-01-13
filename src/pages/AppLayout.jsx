@@ -5,11 +5,7 @@ import { Outlet, useNavigate } from "react-router-dom";
 
 export function AppLayout() {
   const navigate = useNavigate();
-  const token= localStorage.getItem("token");
-  if (token) {
-    console.log("token is present");
-    // console.log(token, "token>>>>>>>>>");
-  }
+  const token = JSON.parse(localStorage.getItem("token"));
 
   useEffect(() => {
     if (token) {

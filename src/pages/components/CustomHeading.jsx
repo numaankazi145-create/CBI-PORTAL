@@ -1,7 +1,14 @@
 import React from "react";
 import { RxExit } from "react-icons/rx";
+import { useNavigate } from "react-router-dom";
 
 export function CustomHeading({ heading, description, button }) {
+  const navigate = useNavigate();
+  function LogoutHandle() {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    navigate(0)
+  }
   return (
     <div>
       <header className="flex justify-between items-center p-8">
@@ -15,7 +22,7 @@ export function CustomHeading({ heading, description, button }) {
         </div>
         {button && (
           <button
-            //   onClick={LogoutHandle}
+              onClick={LogoutHandle}
             className="font-semibold text-sm text-[#414651] bg-white border-2 border-[#D5D7DA] py-2.5 px-4 rounded-lg flex gap-2 items-center justify-center hover:bg-[#fafafade] transition cursor-pointer"
           >
             <RxExit />
