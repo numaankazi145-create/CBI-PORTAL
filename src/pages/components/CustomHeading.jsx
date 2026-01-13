@@ -11,8 +11,8 @@ export function CustomHeading({ heading, description, button }) {
   }
   return (
     <div>
-      <header className="flex justify-between items-center p-8">
-        <div>
+      <header className="flex justify-between items-center p-8 sticky top-0 z-10">
+        <div className="space-y-2">
           <h1 className="text-[#181D27] font-semibold text-3xl leading-9.5 ">
             {heading}
           </h1>
@@ -22,7 +22,7 @@ export function CustomHeading({ heading, description, button }) {
         </div>
         {button && (
           <button
-              onClick={LogoutHandle}
+            onClick={LogoutHandle}
             className="font-semibold text-sm text-[#414651] bg-white border-2 border-[#D5D7DA] py-2.5 px-4 rounded-lg flex gap-2 items-center justify-center hover:bg-[#fafafade] transition cursor-pointer"
           >
             <RxExit />
@@ -30,7 +30,7 @@ export function CustomHeading({ heading, description, button }) {
           </button>
         )}
       </header>
-      <hr className="border border-[#8E9FC11F] w-full " />
+      <hr className="border border-[#8E9FC11F] w-full" />
     </div>
   );
 }
