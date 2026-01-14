@@ -4,15 +4,19 @@ import React, { useState } from "react";
 import { CompetencyCard } from "../components/CompetencyCard";
 import { IoArrowForwardOutline } from "react-icons/io5";
 import { Guidelines } from "../components/GuidelinePop";
+import { useNavigate } from "react-router-dom";
 const user = JSON.parse(localStorage.getItem("user") || "{}");
 
 export function Landing() {
   const [guide, setGuide] = useState(false);
-  const {
-    data: Competency,
-    // isPending,
-    // isError,
-  } = useQuery({
+  const navigate = useNavigate();
+
+  // --handleChange--
+  function ChangeHandle() {
+    navigate("/Competency", { state: QuestionerId });
+  }
+  // --competency card--
+  const { data: Competency } = useQuery({
     queryKey: [
       `/competency/participant-dashboard/${user?.participant_id}/${user?.client_id}`,
     ],
@@ -20,6 +24,15 @@ export function Landing() {
     enabled: !!user?.participant_id,
   });
   console.log(Competency, "CompetencyCards>>>>>>>>>>>>>>>");
+  // --competency questionaireID--
+  const { data: QuestionerId } = useQuery({
+    queryKey: [
+      `/cbi/participant-assessment/${user?.participant_id}/${user?.client_id}/${user?.["participants.cohort_id"]}`,
+    ],
+    select: (QuestionerId) => QuestionerId?.data?.data,
+    enabled: !!user?.participant_id,
+  });
+  console.log(QuestionerId, "QuestionerId>>>>>>>>>>>>>>>");
 
   return (
     <>
@@ -54,13 +67,17 @@ export function Landing() {
               />
             ))}
         </div>
+        <Guidelines
+          open={guide}
+          onOpenChange={setGuide}
+          handleChange={ChangeHandle}
+        />
         <button
           onClick={() => setGuide(true)}
           className="text-base font-semibold  bg-[#3B7FE6] text-white py-2 px-4 rounded-md flex justify-center items-center gap-1 m-auto hover:bg-[#75a5ee] transition-all"
         >
           Start Assessment <IoArrowForwardOutline />
         </button>
-        <Guidelines open={guide} onOpenChange={setGuide} />
       </section>
     </>
   );

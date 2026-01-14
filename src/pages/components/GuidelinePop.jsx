@@ -9,9 +9,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { useNavigate } from "react-router-dom";
 
-export function Guidelines({ open, onOpenChange }) {
+export function Guidelines({ open, onOpenChange, handleChange }) {
   const Bullets = [
     {
       index: "1",
@@ -62,7 +61,7 @@ export function Guidelines({ open, onOpenChange }) {
       label: "Do not share assessment content with others",
     },
   ];
- const navigate = useNavigate();
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogTrigger asChild></DialogTrigger>
@@ -101,7 +100,7 @@ export function Guidelines({ open, onOpenChange }) {
             </Button>
           </DialogClose>
           <Button
-            onClick={()=>navigate("/Competency")}
+            onClick={handleChange}
             type="submit"
             className={`bg-[#155ff2d4] hover:bg-[#004eeb] font-semibold`}
           >
