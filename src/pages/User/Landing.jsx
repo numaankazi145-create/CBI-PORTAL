@@ -40,7 +40,7 @@ export function Landing() {
       <CustomHeading
         heading="Welcome to the Competency Based Interview Portal"
         description="Assess your professional skills across key competencies"
-        button="Sign Out"
+        // button="Sign Out"
       />
       <section className="p-8 flex flex-col gap-8">
         {/* --hero-- */}
@@ -72,12 +72,14 @@ export function Landing() {
           onOpenChange={setGuide}
           handleChange={ChangeHandle}
         />
-        <button
-          onClick={() => setGuide(true)}
-          className="text-base font-semibold  bg-[#3B7FE6] text-white py-2 px-4 rounded-md flex justify-center items-center gap-1 m-auto hover:bg-[#75a5ee] transition-all"
-        >
-          Start Assessment <IoArrowForwardOutline />
-        </button>
+        {Competency && (
+          <button
+            onClick={() => setGuide(true)}
+            className="text-base font-semibold  bg-[#3B7FE6] text-white py-2 px-4 rounded-md flex justify-center items-center gap-1 m-auto hover:bg-[#75a5ee] transition-all"
+          >
+            Start Assessment <IoArrowForwardOutline />
+          </button>
+        )}
       </section>
     </>
   );

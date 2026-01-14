@@ -1,4 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
+import { FaEllipsisVertical } from "react-icons/fa6";
 import {
   Sidebar,
   SidebarContent,
@@ -13,6 +14,7 @@ import {
   SidebarRail,
   useSidebar,
 } from "../ui/sidebar";
+import { LogoutMenu } from "./LogoutMenu";
 
 export function SideMenu({ sidemenuIcon1, sidemenuName1 }) {
   const location = useLocation();
@@ -40,25 +42,29 @@ export function SideMenu({ sidemenuIcon1, sidemenuName1 }) {
         </SidebarHeader>
 
         {/* User Profile */}
+        <div className="flex justify-between items-center">
+          <div className="flex items-center gap-4">
+            <img
+              src="images/Avatar.jpg"
+              alt="User Avatar"
+              className={`rounded-full transition-all duration-300 ${
+                open ? "h-13 w-13" : "h-6 w-6 "
+              }`}
+            />
+            {open && (
+              <div className="flex flex-col">
+                <span className="text-[#FDFDFD] font-semibold text-base leading-6">
+                  {user?.name}
+                </span>
+                <p className="text-[#F5F5F5] font-normal text-base leading-6">
+                  {user?.role}
+                </p>
+              </div>
+            )}
+          </div>
+          <LogoutMenu />
 
-        <div className="flex items-center gap-4">
-          <img
-            src="images/Avatar.jpg"
-            alt="User Avatar"
-            className={`rounded-full transition-all duration-300 ${
-              open ? "h-13 w-13" : "h-6 w-6 "
-            }`}
-          />
-          {open && (
-            <div className="flex flex-col">
-              <span className="text-[#FDFDFD] font-semibold text-base leading-6">
-                {user?.name}
-              </span>
-              <p className="text-[#F5F5F5] font-normal text-base leading-6">
-                {user?.role}
-              </p>
-            </div>
-          )}
+          {/* <FaEllipsisVertical className="text-white" /> */}
         </div>
 
         <SidebarContent>

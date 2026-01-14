@@ -120,6 +120,17 @@ export function CompetencyPage() {
                   disabled={quessionnaireData?.response}
                   defaultValue={quessionnaireData?.response ?? null}
                 />
+                {quessionnaireData?.prop_ques_resp.length > 0 &&
+                  quessionnaireData?.prop_ques_resp?.map((item, index) => (
+                    <CustomTextArea
+                      Question={quessionnaireData?.questions?.question}
+                      name={`answer_${index}`}
+                      placeholder="Write something here..."
+                      required={true}
+                      disabled={item?.response}
+                      defaultValue={item?.response ?? null}
+                    />
+                  ))}
               </form>
             </FormProvider>
           </div>
@@ -135,18 +146,4 @@ export function CompetencyPage() {
       </section>
     </>
   );
-}
-
-{
-  /* <main className="px-6 py-8">
-        <section className="p-6 bg-white rounded-xl flex flex-col gap-8 mb-20">
-          <div className="flex flex-col gap-4 relative pl-5">
-            <h1 className="text-[18px] font-semibold leading-7 text-[#181D27]">
-              Core Question
-            </h1>
-            <Label Question={quessionnaireData?.questions?.question} />
-            <TextArea />
-          </div>
-        </section>
-      </main> */
 }
