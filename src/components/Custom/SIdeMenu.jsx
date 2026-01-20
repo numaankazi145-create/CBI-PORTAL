@@ -42,13 +42,13 @@ export function SideMenu({ sidemenuIcon1, sidemenuName1 }) {
         </SidebarHeader>
 
         {/* User Profile */}
-        <div className="flex justify-between items-center">
-          <div className="flex items-center gap-4">
+        <div className={open ? "flex justify-between items-center" : ""}>
+          <div className={open ? "flex items-center gap-4" : ""}>
             <img
               src="images/Avatar.jpg"
               alt="User Avatar"
               className={`rounded-full transition-all duration-300 ${
-                open ? "h-13 w-13" : "h-6 w-6 "
+                open ? "h-13 w-13" : "h-8 w-8 "
               }`}
             />
             {open && (
@@ -62,9 +62,7 @@ export function SideMenu({ sidemenuIcon1, sidemenuName1 }) {
               </div>
             )}
           </div>
-          <LogoutMenu />
-
-          {/* <FaEllipsisVertical className="text-white" /> */}
+          {open ? <LogoutMenu /> : null}
         </div>
 
         <SidebarContent>

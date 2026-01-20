@@ -123,7 +123,7 @@ export function CompetencyPage() {
     setLoader(true);
     setCompleted(false);
     setTimeout(() => {
-      toast.error("Logged out successfully");
+    toast.error("Logged out successfully");
 
       navigate("/login");
     }, 1000);
@@ -140,7 +140,7 @@ export function CompetencyPage() {
   return (
     <>
       <CustomHeading
-        heading={`Section ${quessionnaireData?.sequence} of 6`}
+        heading={`Section ${quessionnaireData?.sequence} of ${QuestionerId?.sections}`}
         description="Assess your professional skills across key competencies"
         className={`sticky top-0 z-10`}
       />

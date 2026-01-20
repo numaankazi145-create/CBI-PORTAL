@@ -14,7 +14,7 @@ export function LogoutMenu() {
   function LogoutHandle() {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-    toast.error("Logged out successfully");
+    toast.error("Logged out");
     navigate("/login");
   }
 
