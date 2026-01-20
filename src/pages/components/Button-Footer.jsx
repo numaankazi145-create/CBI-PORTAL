@@ -12,7 +12,7 @@ export function ButtonFooter({
   return (
     <main className="bg-white p-5 bottom-0 sticky  left-0 w-full z-10 border ">
       <div className="flex justify-end">
-        {apiResponse?.is_prop_ques_available === false ? (
+        {apiResponse && apiResponse?.is_prop_ques_available === false ? (
           <div className="flex gap-4">
             <button
               onClick={() => setOpenPop(true)}

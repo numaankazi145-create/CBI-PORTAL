@@ -7,14 +7,17 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { FaEllipsisVertical } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 export function LogoutMenu() {
   const navigate = useNavigate();
   function LogoutHandle() {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-    navigate(0);
+    toast.error("Logged out successfully");
+    navigate("/login");
   }
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>

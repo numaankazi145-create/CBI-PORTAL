@@ -1,17 +1,20 @@
+import { cn } from "@/lib/utils";
 import React from "react";
 import { RxExit } from "react-icons/rx";
 import { useNavigate } from "react-router-dom";
 
-export function CustomHeading({ heading, description, button }) {
+export function CustomHeading({ heading, description, button, className }) {
   const navigate = useNavigate();
   function LogoutHandle() {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-    navigate(0)
+    navigate(0);
   }
   return (
     <div>
-      <header className="flex justify-between items-center p-8 sticky top-0 z-10">
+      <header
+        className={cn("flex justify-between items-center p-8", className)}
+      >
         <div className="space-y-2">
           <h1 className="text-[#181D27] font-semibold text-3xl leading-9.5 ">
             {heading}

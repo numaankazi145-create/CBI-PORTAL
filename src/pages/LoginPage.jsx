@@ -3,7 +3,7 @@ import { Eye, EyeOff, Loader } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-
+import { toast } from "sonner";
 export function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [pending, setPending] = useState(false);
@@ -32,10 +32,14 @@ export function LoginPage() {
       localStorage.setItem("token", JSON.stringify(res?.data?.accessToken));
       localStorage.setItem("user", JSON.stringify(res?.data?.user));
       setPending(false);
-      navigate(0);
+      toast.success("Login successfully");
+      setTimeout(() => {
+        navigate("/Landing");
+        window.location.reload();
+      }, 2000);
     } catch (error) {
       console.log("Error:", error);
-      alert("Invalid email or password");
+      toast.error("Invalid email or password");
     } finally {
       setPending(false);
     }

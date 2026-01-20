@@ -16,6 +16,10 @@ function App() {
           element: <LoginPage />,
         },
         {
+          path: "/login",
+          element: <LoginPage />,
+        },
+        {
           path: "/Landing",
           element: <Landing />,
         },

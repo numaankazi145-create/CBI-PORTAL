@@ -5,11 +5,12 @@ import { CompetencyCard } from "../components/CompetencyCard";
 import { IoArrowForwardOutline } from "react-icons/io5";
 import { Guidelines } from "../components/GuidelinePop";
 import { useNavigate } from "react-router-dom";
+
 const user = JSON.parse(localStorage.getItem("user") || "{}");
 
 export function Landing() {
-  const [guide, setGuide] = useState(false);
   const navigate = useNavigate();
+  const [guide, setGuide] = useState(false);
 
   // --handleChange--
   function ChangeHandle() {
