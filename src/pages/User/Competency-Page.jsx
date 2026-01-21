@@ -120,6 +120,7 @@ export function CompetencyPage() {
   function LogoutHandle() {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
+    console.log("Logout");
     setLoader(true);
     setCompleted(false);
     setTimeout(() => {
